@@ -7,4 +7,4 @@
 
 # Règles du jeu
 
-La grille doit contenir des chiffres de 1 à 9. Un même chiffre ne se trouve qu'une seule fois par ligne, par colonne, et dans chaque bloc de 3 cases par 3. Vous pouvez utiliser des chiffres proposés à coté de la grille en cliquant sur une case et en cliquant après sur un numéro. 
+La grille doit contenir des chiffres de 1 à 9. Un même chiffre ne se trouve qu'une seule fois par ligne, par colonne, et dans chaque bloc de 3 cases par 3. Vous pouvez remplir la case vierge et selectionné à l'aide  des chiffres proposés sur coté de la grille. 
