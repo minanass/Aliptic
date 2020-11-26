@@ -12,8 +12,4 @@ La grille doit contenir des chiffres de 1 à 9. Un même chiffre ne se trouve qu
 # Techniques:
 
 Les techniques utilisés pour la réalisation de ce jeu sont:
-- Symfony 4.
--Bootstrap 4.
--Git.
--Docker.
--Html 5, CSS 3, Php 7, javascipt.
+ Symfony 4, Bootstrap 4 , Git , Docker, Html 5, CSS 3, Php 7, javascipt.
