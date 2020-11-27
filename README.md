@@ -13,3 +13,12 @@ La grille doit contenir des chiffres de 1 à 9. Un même chiffre ne se trouve qu
 
 Les techniques utilisés pour la réalisation de ce jeu sont:
  Symfony 4, Bootstrap 4 , Git , Docker, Html 5, CSS 3, Php 7, javascript.
+ 
+# Dockerfile: 
+
+Pour utiliser ce Dockerfile il voudra vous rendre dans le dossier de ce projet à l'aide votre terminal et taper:
+
+```bash
+docker build --tag lamp/sudoku_kai_shi .
+```
+Une fois cette commande exécutée, rendez-vous dans votre application docker windows afin de créer un container, dans lequel vous renseignerez les ports ainsi que l'emplacement des fichiers de notre application au niveau des volumes
