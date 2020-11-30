@@ -58,5 +58,6 @@ EXPOSE 3306
 
 
 
-CMD ["/usr/bin/mysqld_safe"]
+
 CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
+CMD ["/usr/bin/mysqld_safe"]
