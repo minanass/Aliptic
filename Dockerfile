@@ -25,8 +25,8 @@ RUN npm install sass -g
 # configuration de php 
 RUN sed -i "s/short_open_tag\ \=\ Off/short_open_tag\ \=\ On/g" /etc/php/7.4/apache2/php.ini
 RUN sed -i "s/\;date\.timezone\ \=/date\.timezone\ \=\ UTC/" /etc/php/7.4/apache2/php.ini
-#RUN sed -i "s/upload_max_filesize\ \=\ 2M/upload_max_filesize\ \=\ 64M/g" /etc/php/7.4/apache2/php.ini
-#RUN sed -i "s/post_max_size\ \=\ 8M/post_max_size\ \=\ 64M/g" /etc/php/7.4/apache2/php.ini
+RUN sed -i "s/upload_max_filesize\ \=\ 2M/upload_max_filesize\ \=\ 64M/g" /etc/php/7.4/apache2/php.ini
+RUN sed -i "s/post_max_size\ \=\ 8M/post_max_size\ \=\ 64M/g" /etc/php/7.4/apache2/php.ini
 
 RUN  echo "<ifModule mod_rewrite.c>\n \tRewriteEngine On \n</ifModule>">> /etc/apache2/apache2.conf
 RUN  echo "ServerName localhost">> /etc/apache2/apache2.conf
@@ -48,16 +48,17 @@ RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /et
 WORKDIR /var/www/html/
 
 
+RUN echo "#!/bin/bash \n cd /var/www/html \n composer install --no-interaction --prefer-dist && composer dump-autoload \n service apache2 start \n service mysql start \n rm -Rf /usr/sbin/composer-started.sh" > composer-started.sh
+RUN mv composer-started.sh /usr/sbin/
+RUN chmod +x /usr/sbin/composer-started.sh
 
 VOLUME /var/www/html
+VOLUME /var/log/httpd
 VOLUME /var/lib/mysql
-
+VOLUME /var/log/mysql
+VOLUME /etc/apache2
 
 EXPOSE 80
 EXPOSE 3306
 
-
-
-
-CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
-CMD ["/usr/bin/mysqld_safe"]
+CMD "/usr/sbin/composer-started.sh" ; sleep infinity
