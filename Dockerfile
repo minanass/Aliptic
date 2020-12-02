@@ -47,10 +47,16 @@ RUN apt install php-xml php-zip -y
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/000-default.conf
 WORKDIR /var/www/html/
 
-
-RUN echo "#!/bin/bash \n cd /var/www/html \n composer install --no-interaction --prefer-dist && composer dump-autoload \n service apache2 start \n service mysql start \n rm -Rf /usr/sbin/composer-started.sh" > composer-started.sh
-RUN mv composer-started.sh /usr/sbin/
-RUN chmod +x /usr/sbin/composer-started.sh
+RUN echo "#!/bin/bash \n cd /var/www/html" \
+    "\n service apache2 start" \
+    "\n service mysql start" \
+    "\n mysql -u root -e \"CREATE DATABASE sukoku_kai_chi_db ;\"" \
+    "\n mysql -u root -e \"CREATE USER 'sukoku_kai_chi_user' IDENTIFIED BY 'tHe_n3w_p@ssW0rD';\"" \
+    "\n mysql -u root -e \"GRANT ALL PRIVILEGES ON sukoku_kai_chi_db . * TO 'sukoku_kai_chi_user'@'localhost' identified by 'tHe_n3w_p@ssW0rD';\"" \
+    "\n mysql -u root -e \"FLUSH PRIVILEGES;\"" \
+    "\n rm -Rf /usr/sbin/mysql-started.sh" > mysql-started.sh
+RUN mv mysql-started.sh /usr/sbin/
+RUN chmod +x /usr/sbin/mysql-started.sh
 
 VOLUME /var/www/html
 VOLUME /var/log/httpd
@@ -61,4 +67,4 @@ VOLUME /etc/apache2
 EXPOSE 80
 EXPOSE 3306
 
-CMD "/usr/sbin/composer-started.sh" ; sleep infinity
+CMD "/usr/sbin/mysql-started.sh" ; sleep infinity
