@@ -37,6 +37,12 @@ class Grid
      */
     private $solution = [];
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Game::class, inversedBy="relation")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $game;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,4 +95,17 @@ class Grid
 
         return $this;
     }
+
+    public function getGame(): ?Game
+    {
+        return $this->game;
+    }
+
+    public function setGame(?Game $game): self
+    {
+        $this->game = $game;
+
+        return $this;
+    }
+
 }
