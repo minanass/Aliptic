@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\GameRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,16 +48,6 @@ class Game
      * @ORM\JoinColumn(nullable=false)
      */
     private $grid;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Grid::class, mappedBy="game", orphanRemoval=true)
-     */
-    private $relation;
-
-    public function __construct()
-    {
-        $this->relation = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -134,36 +122,6 @@ class Game
     public function setGrid(?Grid $grid): self
     {
         $this->grid = $grid;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Grid[]
-     */
-    public function getRelation(): Collection
-    {
-        return $this->relation;
-    }
-
-    public function addRelation(Grid $relation): self
-    {
-        if (!$this->relation->contains($relation)) {
-            $this->relation[] = $relation;
-            $relation->setGame($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRelation(Grid $relation): self
-    {
-        if ($this->relation->removeElement($relation)) {
-            // set the owning side to null (unless already changed)
-            if ($relation->getGame() === $this) {
-                $relation->setGame(null);
-            }
-        }
 
         return $this;
     }
