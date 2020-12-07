@@ -3,7 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Grid;
-use APP\Entity\Game;
+//use APP\Entity\Game;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -18,15 +18,17 @@ for($i= 1; $i<=10; $i++){
          $grid = new Grid();
          $grid -> setName('mina');
          $grid -> setLevel('1');
-		 $grid -> setInitialStructure('1');
-		 $grid -> setSolution('');
+         $grid -> setInitialStructure( $i
+        );
+         
+		 $grid -> setSolution('[]');
 
-         $game= new Game();
-         $game->setGame($game);
+         /*$game= new Game();
+         $game->setGame($game);*/
 
          
          $manager->persist($grid);
-         $manager->persist($game);
+         //$manager->persist($game);
      }
          $manager->flush();
     }
