@@ -5,8 +5,17 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+     <body>
+        <div class="clearfix">
+            {% include 'partials/header.html.twig' %}
+
+            <div class="min_heigth">
+                {% block body %}{% endblock %}
+            </div>
+
+            {% include 'partials/footer.html.twig' %}
+
+            {% block javascripts %}{% endblock %}
+        </div>
     </body>
 </html>
