@@ -12,24 +12,30 @@ class GridFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-         
-for($i= 1; $i<=10; $i++){
 
          $grid = new Grid();
          $grid -> setName('mina');
          $grid -> setLevel('1');
-         $grid -> setInitialStructure( $i
-        );
-         
-		 $grid -> setSolution('[]');
+         $grid -> setInitialStructure($i);
 
-         /*$game= new Game();
-         $game->setGame($game);*/
+		 $grid -> setSolution( $this->creationStructure());
 
          
          $manager->persist($grid);
-         //$manager->persist($game);
-     }
+
          $manager->flush();
     }
+
+    public function creationStructure(){
+        $structure =[];
+        for($indexRow = 0;$indexRow <= 8; $indexRow++){
+            $row=[];
+            for($value = 1; $value <= 9; $value++){
+                $row[$indexRow] = $value;
+            }
+            array_push ( $structure , $row );
+        }
+        return $structure;
+    }
+
 }
