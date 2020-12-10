@@ -23,7 +23,7 @@ class Game
     private $startTime;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $endTime;
 
@@ -71,7 +71,7 @@ class Game
         return $this->endTime;
     }
 
-    public function setEndTime(\DateTimeInterface $endTime): self
+    public function setEndTime(\DateTimeInterface $endTime = NULL): self
     {
         $this->endTime = $endTime;
 
