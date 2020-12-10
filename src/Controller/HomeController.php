@@ -27,4 +27,22 @@ class HomeController extends AbstractController
         return $this->render('pages/legales_mentions.html.twig');
     }
 
+    /**
+     * @Route(path="/game_rules", name="game_rules")
+     * @return Response
+     */
+    public function showGameRules(): Response
+    {
+        return $this->render('pages/game_rules.html.twig');
+    }
+
+    /**
+     * @Route(path="/group_description", name="group_description")
+     * @return Response
+     */
+    public function showGroupDescription(): Response
+    {
+        return $this->render('pages/group_description.html.twig');
+    }
+
 }
