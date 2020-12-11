@@ -14,7 +14,7 @@ class GameController extends AbstractController
      */
     public function index(GridRepository $gridRepository): Response
     {
-        return $this->render('game/index.html.twig', [
+        return $this->render('game/game.html.twig', [
             'grid' => $gridRepository->findAll(),
         ]);
     }
