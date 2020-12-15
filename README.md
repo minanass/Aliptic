@@ -25,7 +25,7 @@ docker build --tag lamp/sudoku_kai_shi .
 Une fois cette commande exécutée, rendez-vous dans votre application docker windows afin de créer un container, dans lequel vous renseignerez les ports ainsi que l'emplacement des fichiers de notre application au niveau des volumes.
 Pour rappel, il faut rentrer dans le premier volume le chemin vers le dossier du projet, et dans le deuxième /var/www/html.
 
-Ensuite, avec la console de commande de Docker, il vous faudra faire un ```bash composer install ``` pour installer les dépendance.
+Ensuite, avec la console de commande de Docker, il vous faudra faire un ``` composer install ``` pour installer les dépendance.
 Il faudra ensuite rentrer la commande suivante:
 ```bash
 php bin/console doctrine:migrations:migrate
