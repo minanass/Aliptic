@@ -14,11 +14,25 @@ La grille doit contenir des chiffres de 1 à 9. Un même chiffre ne se trouve qu
 Les techniques utilisés pour la réalisation de ce jeu sont:
  Symfony 4, Bootstrap 4 , Git , Docker, Html 5, CSS 3, Php 7, javascript.
  
-# Dockerfile: 
+# Mise en place du projet: 
 
-Pour utiliser ce Dockerfile il voudra vous rendre dans le dossier de ce projet à l'aide votre terminal et taper:
+Tout d'abord il vous faudra cloner le projet depuis le repo github.
+Ensuite, pour utiliser le Dockerfile il faudra vous rendre dans le dossier de ce projet à l'aide votre terminal et taper:
 
 ```bash
 docker build --tag lamp/sudoku_kai_shi .
 ```
-Une fois cette commande exécutée, rendez-vous dans votre application docker windows afin de créer un container, dans lequel vous renseignerez les ports ainsi que l'emplacement des fichiers de notre application au niveau des volumes
+Une fois cette commande exécutée, rendez-vous dans votre application docker windows afin de créer un container, dans lequel vous renseignerez les ports ainsi que l'emplacement des fichiers de notre application au niveau des volumes.
+Pour rappel, il faut rentrer dans le premier volume le chemin vers le dossier du projet, et dans le deuxième /var/www/html.
+
+Ensuite, avec la console de commande de Docker, il vous faudra faire un ```bash composer install ``` pour installer les dépendance.
+Il faudra ensuite rentrer la commande suivante:
+```bash
+php bin/console doctrine:migrations:migrate
+```
+Vous aurez ainsi votre base de données.
+Pour finir il vous faudra charger les fixtures:
+```bash
+php bin/console doctrine:fixtures:load
+```
+
