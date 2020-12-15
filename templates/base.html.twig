@@ -4,7 +4,31 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <style>
+
+                input[type="number"]{
+                    overflow: visible;
+                    width: 56px;
+                    height: 58px;
+                    padding-left: 22px !important;
+                    -moz-appearance: textfield;
+                }
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+                input[type="number"]:read-only{
+                    font-weight: bold;
+                    background-color: #FFFFFF;
+                }
+                table .form-group {
+                    margin-bottom: 0px;
+                }
+            </style>
+
+        {% endblock %}
     </head>
      <body>
         <div class="clearfix">

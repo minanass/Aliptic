@@ -3,6 +3,23 @@
 
 {% block body %}
 
-	
+    <form method="POST" name="sudoku_grid"  id="sudoku_grid" action="{{ path('check_answer') }}">
+        <table>
+            {% for row_index, row in grid %}
+                <tr class="form-group row" >
+                    {% for cell_index, cell_value in row %}
+                        <td>
+                            {% if cell_value != 0 %}
+                                <input class="form-control" type="number" id="id_{{ row_index }}-{{ cell_index }}" name="cell_{{ row_index }}-{{ cell_index }}" value="{{ cell_value }}" readonly="readonly" >
+                            {% else %}
+                                <input class="form-control" type="number" id="id_{{ row_index }}-{{ cell_index }}" name="cell_{{ row_index }}-{{ cell_index }}" min="1" max="9" >
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+        <input class="btn btn-primary" form="sudoku_grid" type="submit" value="send">
+    </form>
 
 {% endblock %}
