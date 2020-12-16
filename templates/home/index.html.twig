@@ -3,25 +3,35 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="d-flex flex-column">
+    <h1 class="mb-4 fs_225 align-self-center py-3">Sudoku Kai chi</h1>
+    <div class="row py-3">
+        
+        <div class="col-6">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id erat facilisis, consequat elit non, eleifend lorem. Fusce imperdiet ante sed sapien hendrerit dictum. Sed sem nulla, semper a lobortis at, facilisis sit amet libero. Praesent tristique mauris augue, id pharetra mi fermentum in. Maecenas ex risus, dignissim at venenatis sit amet, fringilla ac erat. Etiam auctor sollicitudin tellus, ac consequat neque lacinia sed. Integer ex leo, malesuada ut purus vel, gravida condimentum risus.
+        </div>
+        <div class="col-6">
+            {% if app.user %}
+                <h2>Classement</h2>
+                {% for user in user %}
+                    <ul class="list-inline">
+                        <li class="list-inline-item">{{ user.username }}</li>
+                        <li class="list-inline-item">{{ user.score}} points</li>
+                    </ul>
+                {% endfor %}
+            {% else %}
+                <h2>Inscription</h2>
+                {{ form_start(form, {'action': path('app_register'), 'method': 'POST'}) }}
+                    {{ form_widget(form) }}
+                    <button type="submit" class="btn btn-primary">Register</button>
+                {{ form_end(form) }}
+            {% endif %}
 
-<div class="example-wrapper">
-
-    <div>
-        <h1>Sudoku Kai chi</h1>
-
-        This friendly message is coming from:
-        <ul>
-            <li>Your controller at <code><a href="{{ '/mnt/d/workPlan/aliptic/sudoku_kai_chi/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-            <li>Your template at <code><a href="{{ '/mnt/d/workPlan/aliptic/sudoku_kai_chi/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-        </ul>
-        <a href="{{ path('game') }}" class="btn btn-secondary">Jouer</a>
+        </div>
+        
     </div>
-    <div>
-        <a href="{{ path('app_register') }}" class="btn btn-primary">Inscription</a>
-    </div>
+    {% if app.user%}
+    <a href="{{ path('game') }}" class="btn btn-secondary w-50 align-self-center py-3">Jouer</a>
+    {% endif %}
 </div>
 {% endblock %}
