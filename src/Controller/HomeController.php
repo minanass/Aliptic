@@ -5,16 +5,27 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use App\Form\RegistrationFormType;
+use App\Repository\UserRepository;
+use App\Entity\User;
 
 class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
      */
-    public function index(): Response
+    public function index(UserRepository $userRepo, Request $request): Response
     {
+        $user = new User;
+        $form = $this->createForm(RegistrationFormType::class, $user, [
+            'action' => $this->generateUrl('app_register'),
+        ]);
+
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
+            'user' => $userRepo->findAll(),
+            'form' => $form->createView()
         ]);
     }
 
