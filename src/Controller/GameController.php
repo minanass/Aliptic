@@ -30,7 +30,7 @@ class GameController extends AbstractController
      */
     public function index(): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_User');
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         // TO-DO recupérer le current user + ajouter de vérification de connection
         $user = $this->security->getUser();
 
