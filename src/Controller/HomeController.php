@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\RegistrationFormType;
-use App\Repository\UserRepository;
+use App\Repository\RankingRepository;
 use App\Entity\User;
 
 class HomeController extends AbstractController
@@ -15,7 +15,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(UserRepository $userRepo, Request $request): Response
+    public function index(RankingRepository $rankingRepo, Request $request): Response
     {
         $user = new User;
         $form = $this->createForm(RegistrationFormType::class, $user, [
@@ -24,7 +24,7 @@ class HomeController extends AbstractController
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-            'user' => $userRepo->findAll(),
+            'ranking' => $rankingRepo->findFirstTenUserOderByScore(),
             'form' => $form->createView()
         ]);
     }
