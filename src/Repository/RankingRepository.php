@@ -19,6 +19,40 @@ class RankingRepository extends ServiceEntityRepository
         parent::__construct($registry, Ranking::class);
     }
 
+    /**
+     * @return Ranking[]
+     */
+    public function findAllUserOderByScore(): array {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT u
+             FROM App\Entity\User u
+             WHERE u.score > 0
+             ORDER BY u.score DESC'
+        );
+
+        return $query->getResult();
+    }
+
+    /**
+     * @return Ranking[]
+     */
+    public function findFirstTenUserOderByScore(): array {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT u
+             FROM App\Entity\User u
+             WHERE u.score > 0
+             ORDER BY u.score DESC
+             '
+        );
+        $query->setMaxResults(10);
+
+        return $query->getResult();
+    }
+
     // /**
     //  * @return Ranking[] Returns an array of Ranking objects
     //  */

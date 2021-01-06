@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
 <div class="d-flex flex-column">
@@ -8,17 +8,22 @@
     <div class="row py-3">
         
         <div class="col-6">
+            <h2 class="mb-4 fs_225">Bienvenue!</h2>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id erat facilisis, consequat elit non, eleifend lorem. Fusce imperdiet ante sed sapien hendrerit dictum. Sed sem nulla, semper a lobortis at, facilisis sit amet libero. Praesent tristique mauris augue, id pharetra mi fermentum in. Maecenas ex risus, dignissim at venenatis sit amet, fringilla ac erat. Etiam auctor sollicitudin tellus, ac consequat neque lacinia sed. Integer ex leo, malesuada ut purus vel, gravida condimentum risus.
         </div>
         <div class="col-6">
             {% if app.user %}
-                <h2>Classement</h2>
-                {% for user in user %}
-                    <ul class="list-inline">
-                        <li class="list-inline-item">{{ user.username }}</li>
-                        <li class="list-inline-item">{{ user.score}} points</li>
-                    </ul>
-                {% endfor %}
+                <h2 class="mb-4 fs_225">Classement</h2>
+                    <table class="table table-borderless">
+                        <tbody>
+                            {% for user in ranking %}
+                                <tr>
+                                    <td>{{ user.username }}</td>
+                                    <td>{{ user.score }} points</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
             {% else %}
                 <h2>Inscription</h2>
                 {{ form_start(form, {'action': path('app_register'), 'method': 'POST'}) }}
