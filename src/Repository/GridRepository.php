@@ -19,6 +19,17 @@ class GridRepository extends ServiceEntityRepository
         parent::__construct($registry, Grid::class);
     }
 
+    public function findGridsByUserLevel($value)
+    {
+        return $this->createQueryBuilder('g')
+            ->andWhere('g.level = :val')
+            ->setParameter('val', $value)
+            ->orderBy('g.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     // /**
     //  * @return Grid[] Returns an array of Grid objects
     //  */

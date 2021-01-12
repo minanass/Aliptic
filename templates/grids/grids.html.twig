@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <div class="d-flex justify-content-around mt-5">
+        {% for grid_of_user_level in grids %}
+            <div class="grids">
+
+                {% for row_grid in grid_of_user_level %}
+                    <div class="d-flex align-content-center row_of_grids" style="">
+                        {% for cell_of_row in row_grid %}
+                            {% if cell_of_row != 0 %}
+                                <div class="cells_of_grids"> {{ cell_of_row }} </div>
+                            {% else %}
+                                <div class="cells_of_grids" ></div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary">Sélectionner</button>
+                </div>
+                    
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
