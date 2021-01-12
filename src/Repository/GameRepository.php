@@ -18,6 +18,19 @@ class GameRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Game::class);
     }
+    // 
+
+    public function findGameNotResolved($value)
+    {
+        return $this->createQueryBuilder('g')
+            //
+            ->where('g.endTime IS NULL')
+            ->andWhere('g.user = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 
     // /**
     //  * @return Game[] Returns an array of Game objects

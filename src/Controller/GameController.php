@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\GridRepository;
+use App\Repository\GameRepository;
 use App\Service\AnswerFormator;
 use App\Service\DataFormator;
 use App\Service\GridChecker;
@@ -18,31 +19,55 @@ use Symfony\Component\Security\Core\Security;
 class GameController extends AbstractController
 {
     private $gridRepository;
+    private $gameRepository;
     private $security;
 
 
-    public function __construct(GridRepository $gridRepository, Security $security){
+    public function __construct(GridRepository $gridRepository, Security $security , GameRepository $gameRepository){
         $this->gridRepository = $gridRepository;
+        $this->gameRepository = $gameRepository;
         $this->security = $security;
+      
     }
+
     /**
      * @Route("/game", name="game", methods={"GET"})
      */
     public function index(): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        // TO-DO recupérer le current user + ajouter de vérification de connection
         $user = $this->security->getUser();
+        
+        $gameNotResolved = $this->gameRepository->findGameNotResolved($user);
 
-        // TO-DO modification du systeme de recupération de grid
-        $lastGrid = $this->gridRepository->findOneBy([], ['id' => 'desc']);
-        $lastId = $lastGrid->getId();
-        $grid = $this->gridRepository->find($lastId);
-
-        $grid_structure = $grid->getInitialStructure();
+        if($gameNotResolved){
+            $grid = $gameNotResolved->getGrid()->getInitialStructure();
+        }else{
+            return $this->redirectToRoute('grids');
+        }
 
         return $this->render('game/game.html.twig', [
-            'grid' => $grid_structure,
+            'grid' => $grid,
+        ]);
+    }
+
+    /**
+     * @Route("/grids", name="grids", methods={"GET"})
+     */
+    public function showGrids(): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $user = $this->security->getUser();
+
+        $grids = [];
+        $a_entities_grid = $this->gridRepository->findGridsByUserLevel($user->getLevel());
+        foreach($a_entities_grid as $entity_grid){
+            $grid_structure = $entity_grid->getInitialStructure();
+            array_push($grids, $grid_structure);
+        }
+    
+        return $this->render('grids/grids.html.twig', [
+            'grids' => $grids,
         ]);
     }
 
