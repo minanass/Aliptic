@@ -76,16 +76,20 @@ class GameController extends AbstractController
      */
     public function checkAnswer(Request $request): Response
     {
-        $lastGrid = $this->gridRepository->findOneBy([], ['id' => 'desc']);
-        $lastId = $lastGrid->getId();
-        $grid = $this->gridRepository->find($lastId);
-        $solution_structured = $grid->getSolution();
+        $submittedToken = $request->request->get('token');
 
-        $data = $request->request->all();
-        $answer_strutured = GridChecker::structuredData($data);
-        $answer = GridChecker::changeFormat($answer_strutured);
-        $solution = GridChecker::changeFormat($solution_structured);
-        $result = GridChecker::checkerAnswer($answer,  $solution );
-        dd($result);
+        if ($this->isCsrfTokenValid('check-answer', $submittedToken)) {
+            $lastGrid = $this->gridRepository->findOneBy([], ['id' => 'desc']);
+            $lastId = $lastGrid->getId();
+            $grid = $this->gridRepository->find($lastId);
+            $solution_structured = $grid->getSolution();
+
+            $data = $request->request->all();
+            $answer_strutured = GridChecker::structuredData($data);
+            $answer = GridChecker::changeFormat($answer_strutured);
+            $solution = GridChecker::changeFormat($solution_structured);
+            $result = GridChecker::checkerAnswer($answer,  $solution );
+            dd($result);
+        }
     }
 }
