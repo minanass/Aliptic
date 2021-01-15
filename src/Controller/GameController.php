@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Game;
 use App\Repository\GridRepository;
 use App\Repository\GameRepository;
 use App\Service\AnswerFormator;
@@ -31,21 +32,48 @@ class GameController extends AbstractController
     }
 
     /**
-     * @Route("/game", name="game", methods={"GET"})
-     */
-    public function index(): Response
+     * @Route("/game/{grid_id}", defaults={"grid_id"=null}, name="game", methods={"GET"})
+    */
+    public function index($grid_id): Response
     {
+  
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->security->getUser();
-        
+
         $gameNotResolved = $this->gameRepository->findGameNotResolved($user);
+        
+        if($grid_id){
 
-        if($gameNotResolved){
-            $grid = $gameNotResolved->getGrid()->getInitialStructure();
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $grid = $this->gridRepository->find($grid_id);
+            if($gameNotResolved){
+                $game = $gameNotResolved->setGrid($grid);
+                $grid = $gameNotResolved->getGrid(); 
+                $entityManager->persist($game);
+            
+            }else{           
+                $entityManager = (new Game())
+                    ->setUser($user)
+                    ->setGrid($grid)
+                    ->setStartTime(new \DateTime('NOW'))
+                    ->setEndTime()
+                    ->setResult(0)
+                    ->setNumberOfTests(0);
+                $entityManager->persist($game);
+            }
+
+            $entityManager->flush();
+
         }else{
-            return $this->redirectToRoute('grids');
-        }
 
+            if($gameNotResolved){
+                $grid = $gameNotResolved->getGrid();
+            }else{
+                return $this->redirectToRoute('grids');
+            }
+        }
+     
         return $this->render('game/game.html.twig', [
             'grid' => $grid,
         ]);
@@ -53,18 +81,13 @@ class GameController extends AbstractController
 
     /**
      * @Route("/grids", name="grids", methods={"GET"})
-     */
+    */
     public function showGrids(): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->security->getUser();
 
-        $grids = [];
-        $a_entities_grid = $this->gridRepository->findGridsByUserLevel($user->getLevel());
-        foreach($a_entities_grid as $entity_grid){
-            $grid_structure = $entity_grid->getInitialStructure();
-            array_push($grids, $grid_structure);
-        }
+        $grids = $this->gridRepository->findGridsByUserLevel($user->getLevel());
     
         return $this->render('grids/grids.html.twig', [
             'grids' => $grids,
@@ -76,20 +99,30 @@ class GameController extends AbstractController
      */
     public function checkAnswer(Request $request): Response
     {
-        $submittedToken = $request->request->get('token');
 
-        if ($this->isCsrfTokenValid('check-answer', $submittedToken)) {
-            $lastGrid = $this->gridRepository->findOneBy([], ['id' => 'desc']);
-            $lastId = $lastGrid->getId();
-            $grid = $this->gridRepository->find($lastId);
-            $solution_structured = $grid->getSolution();
+       $submittedToken = $request->request->get('token');
 
-            $data = $request->request->all();
-            $answer_strutured = GridChecker::structuredData($data);
-            $answer = GridChecker::changeFormat($answer_strutured);
-            $solution = GridChecker::changeFormat($solution_structured);
-            $result = GridChecker::checkerAnswer($answer,  $solution );
-            dd($result);
-        }
+       if ($this->isCsrfTokenValid('check-answer', $submittedToken)) {
+          $data = $request->request->all();
+          $grid_id = array_pop($data);
+          $grid = $this->gridRepository->find($grid_id);
+          $solution_structured = $grid->getSolution();
+
+          $answer_strutured = GridChecker::structuredData($data);
+          $answer = GridChecker::changeFormat($answer_strutured);
+          $solution = GridChecker::changeFormat($solution_structured);
+          $result = GridChecker::checkerAnswer($answer,  $solution );
+          if($result){
+              $this->addFlash('correctAnswer',"Félicitation tu as résolu ce sudoku, tu passes au niveau suivant" );
+              return $this->redirectToRoute('grids');
+          }else{
+              $this->addFlash('wrongAnswer',"Malheureusement ta proposition n'est pas correcte, tu peux recommencer" );
+              return $this->redirectToRoute('game');
+              // return $this->render('game/game.html.twig', [
+              //     'grid' => $grid
+              // ]);
+          }
+       }
+       return $this->redirectToRoute('game');
     }
 }

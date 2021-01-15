@@ -1,6 +1,9 @@
 body {
     background-color: lightgray;
 }
+.flash-message {
+    text-align: center;
+}
 /* style grid_form */
 input[type="number"]{
     overflow: visible;
