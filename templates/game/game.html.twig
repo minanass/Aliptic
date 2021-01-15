@@ -2,11 +2,17 @@
 
 
 {% block body %}
+
+        {% for message in app.flashes('wrongAnswer') %}
+            <div class="flash-message alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+
         <div class="d-flex justify-content-center mt-5">
             <form method="POST" name="sudoku_grid"  id="sudoku_grid" action="{{ path('check_answer') }}">
                 <table class='grid'>
-
-                    {% for row_index, row in grid %}
+                    {% for row_index, row in grid.initialStructure %}
                         <tr class="form-group row" >
 
                             {% for cell_index, cell_value in row %}
@@ -18,9 +24,11 @@
                                     {% endif %}
                                 </td>
                             {% endfor %}
-
+                            
                         </tr>
+                   
                     {% endfor %}
+                    <input id="gridId" name="gridId" type="hidden" value="{{ grid.id }}">
                 </table>
                 <div class="d-flex justify-content-between mt-3 row">
                     <input class="btn btn-lg btn-primary mb-3 me-md-3" form="sudoku_grid" type="submit" value="Soumettre">

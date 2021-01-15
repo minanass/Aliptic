@@ -2,12 +2,17 @@
 
 
 {% block body %}
+    {% for message in app.flashes('correctAnswer') %}
+        <div class="flash-message alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
 
     <div class="d-flex justify-content-around mt-5">
         {% for grid_of_user_level in grids %}
             <div class="grids">
 
-                {% for row_grid in grid_of_user_level %}
+                {% for row_grid in grid_of_user_level.initialStructure %}
                     <div class="d-flex align-content-center row_of_grids" style="">
                         {% for cell_of_row in row_grid %}
                             {% if cell_of_row != 0 %}
@@ -19,8 +24,8 @@
                     </div>
                 {% endfor %}
 
-                <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-primary">Sélectionner</button>
+                <div class="d-flex justify-content-center mt-3">
+                    <a href="{{ path('game', { 'grid_id': grid_of_user_level.id}) }}" class="btn btn-primary">Sélectionner</a>
                 </div>
                     
             </div>
