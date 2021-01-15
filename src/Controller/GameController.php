@@ -99,25 +99,30 @@ class GameController extends AbstractController
      */
     public function checkAnswer(Request $request): Response
     {
-      
-        $data = $request->request->all();
-        $grid_id = array_pop($data);
-        $grid = $this->gridRepository->find($grid_id);
-        $solution_structured = $grid->getSolution();
 
-        $answer_strutured = GridChecker::structuredData($data);
-        $answer = GridChecker::changeFormat($answer_strutured);
-        $solution = GridChecker::changeFormat($solution_structured);
-        $result = GridChecker::checkerAnswer($answer,  $solution );
-        if($result){
-            $this->addFlash('correctAnswer',"Félicitation tu as résolu ce sudoku, tu passes au niveau suivant" );
-            return $this->redirectToRoute('grids');
-        }else{
-            $this->addFlash('wrongAnswer',"Malheureusement ta proposition n'est pas correcte, tu peux recommencer" );
-            return $this->redirectToRoute('game');
-            // return $this->render('game/game.html.twig', [
-            //     'grid' => $grid
-            // ]);
-        }
+       $submittedToken = $request->request->get('token');
+
+       if ($this->isCsrfTokenValid('check-answer', $submittedToken)) {
+          $data = $request->request->all();
+          $grid_id = array_pop($data);
+          $grid = $this->gridRepository->find($grid_id);
+          $solution_structured = $grid->getSolution();
+
+          $answer_strutured = GridChecker::structuredData($data);
+          $answer = GridChecker::changeFormat($answer_strutured);
+          $solution = GridChecker::changeFormat($solution_structured);
+          $result = GridChecker::checkerAnswer($answer,  $solution );
+          if($result){
+              $this->addFlash('correctAnswer',"Félicitation tu as résolu ce sudoku, tu passes au niveau suivant" );
+              return $this->redirectToRoute('grids');
+          }else{
+              $this->addFlash('wrongAnswer',"Malheureusement ta proposition n'est pas correcte, tu peux recommencer" );
+              return $this->redirectToRoute('game');
+              // return $this->render('game/game.html.twig', [
+              //     'grid' => $grid
+              // ]);
+          }
+       }
+       return $this->redirectToRoute('game');
     }
 }
