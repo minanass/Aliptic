@@ -1,47 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Accueil
+{% endblock %}
 
 {% block body %}
-<div class="d-flex flex-column mt-5">
-    <h1 class="mb-4 fs_225 align-self-center py-3">Sudoku Kai chi</h1>
-    <div class="row py-3">
-        
-        <div class="col-6">
-            <h2 class="mb-4 fs_225">Bienvenue!</h2>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id erat facilisis, consequat elit non, eleifend lorem. Fusce imperdiet ante sed sapien hendrerit dictum. Sed sem nulla, semper a lobortis at, facilisis sit amet libero. Praesent tristique mauris augue, id pharetra mi fermentum in. Maecenas ex risus, dignissim at venenatis sit amet, fringilla ac erat. Etiam auctor sollicitudin tellus, ac consequat neque lacinia sed. Integer ex leo, malesuada ut purus vel, gravida condimentum risus.
-            {% if app.user%}
-                <div class="d-flex justify-content-between mt-5">
-                    <a href="{{ path('game') }}" class="btn btn-lg btn-primary mb-3 me-md-3">Continuer la partie en cours</a>
-                    <a href="{{ path('grids') }}" class="btn btn-lg btn-outline-secondary mb-3">Changer de Grille</a>
-                </div>
-            
-            {% endif %}
-        </div>
-        <div class="col-6">
-            {% if app.user %}
-                <h2 class="mb-4 fs_225">Classement</h2>
-                    <table class="table table-borderless">
-                        <tbody>
-                            {% for user in ranking %}
-                                <tr>
-                                    <td>{{ user.username }}</td>
-                                    <td>{{ user.score }} points</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-            {% else %}
-                <h2>Inscription</h2>
-                {{ form_start(form, {'action': path('app_register'), 'method': 'POST'}) }}
-                    {{ form_widget(form) }}
-                    <button type="submit" class="btn btn-primary">Register</button>
-                {{ form_end(form) }}
-            {% endif %}
+	<div class="d-flex flex-column mt-5">
+		<h1 class="mb-4 fs_225 align-self-center py-3">Sudoku Kai chi</h1>
+		<div class="row py-3">
 
-        </div>
-        
-    </div>
- 
-</div>
+			<div class="col-6">
+				<h2 class="mb-4 fs_225">Bienvenue!</h2>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id erat facilisis, consequat elit non, eleifend lorem. Fusce imperdiet ante sed sapien hendrerit dictum. Sed sem nulla, semper a lobortis at, facilisis sit amet libero. Praesent tristique mauris augue, id pharetra mi fermentum in. Maecenas ex risus, dignissim at venenatis sit amet, fringilla ac erat. Etiam auctor sollicitudin tellus, ac consequat neque lacinia sed. Integer ex leo, malesuada ut purus vel, gravida condimentum risus.
+
+				{% if app.user %}
+					{% if app.user.score == 0 %}
+						<div class="d-flex justify-content-center mt-5">
+							<a href="{{ path('grids') }}" class="btn btn-lg btn-primary mb-3 me-md-3">Sélectionner votre première grille</a>
+						</div>
+					{% else %}
+						<div class="d-flex justify-content-between mt-5">
+							<a href="{{ path('game') }}" class="btn btn-lg btn-primary mb-3 me-md-3">Continuer la partie en cours</a>
+							<a href="{{ path('grids') }}" class="btn btn-lg btn-outline-secondary  mb-3">Changer de Grille</a>
+						</div>
+					{% endif %}
+				{% else %}
+					<div class="d-flex justify-content-center mt-5">
+						<a href="{{ path('app_login') }}" class="btn btn-lg btn-primary mb-3">Connexion</a>
+					</div>
+				{% endif %}
+			</div>
+			<div class="col-6">
+				{% if app.user %}
+					<h2 class="mb-4 fs_225">Classement</h2>
+					<table class="table table-borderless">
+						<tbody>
+							{% for user in ranking %}
+								<tr>
+									<td>{{ user.username }}</td>
+									<td>{{ user.score }}
+										points</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				{% else %}
+					<h2>Inscription</h2>
+					{{ form_start(form, {'action': path('app_register'), 'method': 'POST'}) }}
+					{{ form_widget(form) }}
+					<div class="d-flex justify-content-center mt-5">
+						<button type="submit" class="btn btn-primary">Créer un compte</button>
+					</div>
+					{{ form_end(form) }}
+				{% endif %}
+
+			</div>
+
+		</div>
+
+	</div>
 {% endblock %}

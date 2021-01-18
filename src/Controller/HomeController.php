@@ -22,6 +22,7 @@ class HomeController extends AbstractController
             'action' => $this->generateUrl('app_register'),
         ]);
 
+
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'ranking' => $rankingRepo->findFirstTenUserOderByScore(),
