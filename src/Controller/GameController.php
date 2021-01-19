@@ -120,13 +120,14 @@ class GameController extends AbstractController
             $result = GridChecker::checkerAnswer($answer,  $solution );
             if($result){
                 //Level Up enregistré dans la base de donné
-                $level = $user->getLevel();
+                /**$level = $user->getLevel();
                 if ($level == 1) {
                     $user->setLevel(2);
                 }
                 elseif ($level == 2) {
                     $user->setLevel(3);
-                } 
+                } **/
+                LevelUp::checkLevel($user);
                 $entityManager->flush();
 
                 $this->addFlash('correctAnswer',"Félicitation tu as résolu ce sudoku, tu passes au niveau suivant" );
