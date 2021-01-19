@@ -100,18 +100,16 @@ class GameController extends AbstractController
     public function checkAnswer(Request $request): Response
     {
 
-        $submittedToken = $request->request->get('token');
+        //$submittedToken = $request->request->get('token');
+      
         $data = $request->request->all();
+        $submittedToken = array_shift($data);
         
         if ($this->isCsrfTokenValid('check-answer', $submittedToken)) {
-            array_shift($data);
+          
             $grid_id = array_pop($data);
-            $grid = $this->gridRepository->find($grid_id);
-            $solution_structured = $grid->getSolution();
-
-            $answer_strutured = GridChecker::structuredData($data);
-            $answer = GridChecker::changeFormat($answer_strutured);
-            $solution = GridChecker::changeFormat($solution_structured);
+            $answer = $data;
+            $solution = $this->gridRepository->find($grid_id)->getSolution();
             $result = GridChecker::checkerAnswer($answer,  $solution );
             if($result){
                 $this->addFlash('correctAnswer',"Félicitation tu as résolu ce sudoku, tu passes au niveau suivant" );
@@ -119,9 +117,6 @@ class GameController extends AbstractController
             }else{
                 $this->addFlash('wrongAnswer',"Malheureusement ta proposition n'est pas correcte, tu peux recommencer" );
                 return $this->redirectToRoute('game');
-                // return $this->render('game/game.html.twig', [
-                //     'grid' => $grid
-                // ]);
             }
         }
         return $this->redirectToRoute('game');
