@@ -8,6 +8,7 @@ use App\Repository\GameRepository;
 use App\Service\AnswerFormator;
 use App\Service\DataFormator;
 use App\Service\GridChecker;
+use App\Service\LevelUp;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -104,6 +105,11 @@ class GameController extends AbstractController
       
         $data = $request->request->all();
         $submittedToken = array_shift($data);
+
+        //Variables pour la monté de niveaux
+        $user = $this->security->getUser();
+        $entityManager = $this->getDoctrine()->getManager();
+
         
         if ($this->isCsrfTokenValid('check-answer', $submittedToken)) {
           
@@ -112,6 +118,17 @@ class GameController extends AbstractController
             $solution = $this->gridRepository->find($grid_id)->getSolution();
             $result = GridChecker::checkerAnswer($answer,  $solution );
             if($result){
+                //Level Up enregistré dans la base de donné
+                /**$level = $user->getLevel();
+                if ($level == 1) {
+                    $user->setLevel(2);
+                }
+                elseif ($level == 2) {
+                    $user->setLevel(3);
+                } **/
+                LevelUp::checkLevel($user);
+                $entityManager->flush();
+
                 $this->addFlash('correctAnswer',"Félicitation tu as résolu ce sudoku, tu passes au niveau suivant" );
                 return $this->redirectToRoute('grids');
             }else{
