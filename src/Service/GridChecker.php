@@ -3,7 +3,7 @@ namespace App\Service;
 
 class GridChecker
 {
-    public static function structuredData($data) : array
+    protected static function structuredData($data) : array
     {
         $formed_data = [];
         for($i = 0; $i < 81; $i += 9 ){
@@ -12,7 +12,7 @@ class GridChecker
         return $formed_data;
     }
 
-    public static function changeFormat($arrays_of_numbres) :string
+    protected static function changeFormat($arrays_of_numbres) :string
     {
         $string_of_numbers = "";
         foreach ($arrays_of_numbres as $array){
@@ -21,8 +21,12 @@ class GridChecker
         return $string_of_numbers;
     }
 
-    public static function checkerAnswer($answer, $solution) : bool
+    public static function checkerAnswer($answer_unstructured, $solution) : bool
     {
+        $answer = self::structuredData($answer_unstructured);
+        $answer =  self::changeFormat($answer);
+        $solution = self::changeFormat($solution);
+
         return $answer === $solution;
     }
 
