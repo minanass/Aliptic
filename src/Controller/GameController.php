@@ -53,7 +53,7 @@ class GameController extends AbstractController
                 $entityManager->persist($game);
             
             }else{           
-                $entityManager = (new Game())
+                $game = (new Game())
                     ->setUser($user)
                     ->setGrid($grid)
                     ->setStartTime(new \DateTime('NOW'))
