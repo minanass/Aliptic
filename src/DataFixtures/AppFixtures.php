@@ -53,6 +53,16 @@ class AppFixtures extends Fixture
         $user3->setLevel(3);
         $manager->persist($user3);
 
+        $admin = new User();
+        $admin->setUsername('Admin');
+        $password = $this->encoder->encodePassword($admin, '123456');
+        $admin->setPassword($password);
+        $admin->setEmail('admin@mushroom.com');
+        $admin->setRoles(['ROLE_Admin']);
+        $admin->setScore(0);
+        $admin->setLevel(1);
+        $manager->persist($admin);
+
         /*
          *  Création de grid avec plusieurs niveaux de complexité
         */
