@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Back Office{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1 class="mb-4 fs_225">Bonjour Administrateur!</h1>
+    <div class="d-flex justify-content-center mt-5">
+            <form method="POST" name="sudoku_grid_creator"  id="sudoku_grid_creator" action="">
+                <table class='grid'>
+                    {% for row_index, row in grille_vierge %}
+                        <tr class="form-group row" >
+
+                            {% for cell_index, cell_value in row %}
+                                <td>
+                                    <input class="form-control" type="number" id="id_{{ row_index }}-{{ cell_index }}" name="cell_{{ row_index }}-{{ cell_index }}" min="1" max="9" >
+                                </td>
+                            {% endfor %}
+                            
+                        </tr>
+                   
+                    {% endfor %}
+                </table>
+                <div class="d-flex justify-content-between mt-3 row">
+                	<label>Nom:<input class="form-control" type="text" id="id_nom_grille" name="nom_grille" placeholder="Nom de la grille" ></label>
+                	<label>Niveau:<input class="form-control" type="number" id="id_level" name="level" min="1" max="3" ></label>
+                </div>
+                <div class="d-flex justify-content-between mt-3 row">
+                    <input class="btn btn-lg btn-primary mb-3 me-md-3" form="sudoku_grid_creator" type="submit" value="Soumettre">
+                </div>
+            </form>
+        </div>
+
+    
+</div>
+{% endblock %}
