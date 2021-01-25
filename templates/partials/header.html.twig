@@ -1,31 +1,32 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('home')}}">Accueil </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('game_rules')}}">Règles du jeu</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('group_description')}}">Description du groupe</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('ranking')}}">Classement</a>
-            </li>
-            {% if app.user %}
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="{{ path('app_logout') }}">Déconnexion</a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="{{ path('app_login') }}">Connexion</a>
-                </li>
-            {% endif %}
-        </ul>
-    </div>
+	<a class="navbar-brand" href="#">Sudoku Kai Chi</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link" href="{{ path('home')}}">Accueil
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ path('game_rules')}}">Règles du jeu</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ path('group_description')}}">Description du groupe</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ path('ranking')}}">Classement</a>
+			</li>
+			{% if app.user %}
+				<li class="nav-item">
+					<a class="nav-link disabled" href="{{ path('app_logout') }}">Déconnexion</a>
+				</li>
+			{% else %}
+				<li class="nav-item">
+					<a class="nav-link disabled" href="{{ path('app_login') }}">Connexion</a>
+				</li>
+			{% endif %}
+		</ul>
+	</div>
 </nav>
