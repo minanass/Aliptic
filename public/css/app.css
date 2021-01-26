@@ -44,11 +44,42 @@ div.aside
     font-size: 0.9em;
     margin-left:100px;
 }
-a.btn-primary, input.btn.btn-lg.btn-primary, button.btn-primary{
+a.btn-primary, input.btn.btn-lg.btn-primary, button.btn.btn-lg.btn-primary{
     background-color: #34A1B9;
     border-color:#34A1B9;
 }
-
+button.btn-primary{
+    background-color: #373737;
+    border-color:#373737;
+}
 div.form-check{
     padding-left:30%;
+}
+button{
+    margin:10px;
+}
+div.container.pt-5{
+    margin-top: 30px; 
+    background-color: #c9e9f0;
+}
+h1.mb-4.fs_225{
+    color:#34A1B9;
+    margin-bottom: 30px!important;
+}
+div.bas-div {
+    text-align: right;
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: bold;
+}
+.btn-outline-secondary{
+    color:#34A1B9;
+    border:2px solid #34A1B9;
+}
+.form-control{
+    border: 1px solid #000000;
+    border-radius: .3rem;
+}
+table{
+  border-spacing:  1px;  
 }

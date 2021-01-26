@@ -1,33 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Classement{% endblock %}
+{% block title %}Classement
+{% endblock %}
 
 {% block body %}
 
-<div class="container pt-5">
-    <h1 class="mb-4 fs_225">Classement</h1>
+	<div class="container pt-5">
+		<h1 class="mb-4 fs_225">Classement</h1>
 
-    <table class="table table-bordered">
-    	<thead class="thead-light">
-    		<tr>
-    			<th>Nom</th>
-    			<th>Score</th>
-    			<th>Place</th>
-    		</tr>
-    	</thead>
-    	<tbody>
-    		{% set place = 0 %}
-    		{% for user in ranking %}
-    			{% set place = place + 1 %}
-    			<tr>
-    				<td>{{ user.username }}</td>
-    				<td>{{ user.score }} points</td>
-    				<td>N° {{ place }}</td>
-    			</tr>
-    		{% endfor %}
-    	</tbody>
-    </table>
+		<table class="table table-bordered">
+			<thead class="thead-light">
+				<tr>
+					<th>Nom</th>
+					<th>Score</th>
+					<th>Place</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% set place = 0 %}
+				{% for user in ranking %}
+					{% set place = place + 1 %}
+					<tr>
+						<td>{{ user.username }}</td>
+						<td>{{ user.score }}
+							points</td>
+						<td>N°
+							{{ place }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<div class="bas-div">
+			<p>
+				Sudoku Kai Chai</p>
+		</div>
 
-   
-</div>
+	</div>
 {% endblock %}
