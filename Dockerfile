@@ -55,7 +55,11 @@ RUN echo "#!/bin/bash \n cd /var/www/html" \
     "\n mysql -u root -e \"CREATE DATABASE sudoku_kai_chi_db ;\"" \
     "\n mysql -u root -e \"CREATE USER 'sudoku_kai_chi_user' IDENTIFIED BY 'tHe_n3w_p@ssW0rD';\"" \
     "\n mysql -u root -e \"GRANT ALL PRIVILEGES ON sudoku_kai_chi_db . * TO 'sudoku_kai_chi_user'@'localhost' identified by 'tHe_n3w_p@ssW0rD';\"" \
-    "\n mysql -u root -e \"FLUSH PRIVILEGES;\" \n fi" > mysql-started.sh
+    "\n mysql -u root -e \"FLUSH PRIVILEGES;\" \n fi" \
+    "\n echo \"-----------------------------------------\"" \
+    "\n echo \"The name of database is: sudoku_kai_chi_db\"" \
+    "\n echo \"The username of database is: sudoku_kai_chi_user\"" \
+    "\n echo \"The password of database is: tHe_n3w_p@ssW0rD\"" > mysql-started.sh
 RUN mv mysql-started.sh /usr/sbin/
 RUN chmod +x /usr/sbin/mysql-started.sh
 
