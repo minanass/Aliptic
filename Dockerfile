@@ -21,6 +21,7 @@ RUN apt install -y nodejs
 
 RUN npm install gulp -g
 RUN npm install sass -g
+RUN npm install --global yarn -y
 
 # configuration de php
 RUN sed -i "s/short_open_tag\ \=\ Off/short_open_tag\ \=\ On/g" /etc/php/7.4/apache2/php.ini
