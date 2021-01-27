@@ -12,7 +12,7 @@ class GridChecker
         return $formed_data;
     }
 
-    protected static function changeFormat($arrays_of_numbres) :string
+    protected static function changeFormat($arrays_of_numbres) : string
     {
         $string_of_numbers = "";
         foreach ($arrays_of_numbres as $array){
