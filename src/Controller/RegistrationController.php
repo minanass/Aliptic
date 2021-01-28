@@ -25,6 +25,7 @@ class RegistrationController extends AbstractController
             // encode the plain password
             $user->setLevel(1);
             $user->setScore(0);
+            $user->setRoles(['ROLE_User']);
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
