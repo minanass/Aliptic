@@ -178,6 +178,3 @@ a, div.footer-copyright, .navbar-light .navbar-brand, ul.navbar-nav li.nav-item 
 .navbar-light .navbar-nav .nav-link{
     margin-left:20px;
 }
-.navbar-light .navbar-nav .nav-link.disabled{
-    margin-left:300px;
-}
