@@ -71,27 +71,32 @@ form .grid tr:nth-child(7) td .form-control{
 .grids button{
     margin-top: 2em;
 }
-div.aside h2{
+div.col-6 h2{
     padding-bottom: 20px;
     text-align: center;
     margin:auto;
 }
-div.section{
+div.col-6.white h2{
+    padding-bottom: 0px;
+    padding-top: 0px;
+    text-align: left;
+}
+div.flex-column{
     display: flex;
     margin-bottom: 20px;
     margin-top: 20%;
 }
-div.article, div.aside{
+div.row.py-3, div.col-6{
     text-align: justify;
 }
-div.article{
+div.row.py-3{
     margin-right: 60px;
     flex: 3;
 }
-div.article p{
+div.row.py-3 p{
     font-size: 0.8em;
 }
-div.aside{
+div.col-6{
     flex: 1.2;
     position: relative;
     background-color: #34A1B9;
@@ -102,9 +107,23 @@ div.aside{
     font-size: 0.9em;
     margin-left:100px;
 }
+div.col-6.white {
+    box-shadow: none;
+    background-color: white;
+    margin-left: 50px;
+    color: black;
+}
+div.col-6.white h1.mb-4.fs_225 {
+    color: black;
+    margin-bottom: 0px!important;
+}
+
 a.btn-primary, input.btn.btn-lg.btn-primary, button.btn.btn-lg.btn-primary{
     background-color: #34A1B9;
     border-color:#34A1B9;
+}
+.justify-content-between a.btn-primary{
+    padding: 0.5rem;
 }
 button.btn-primary{
     background-color: #373737;
@@ -115,6 +134,12 @@ div.form-check{
 }
 button{
     margin:10px;
+}
+.justify-content-between .btn{
+    margin-right: 15px;
+}
+.justify-content-between .btn:last-child{
+    margin-right:0;
 }
 div.container.pt-5{
     margin-top: 30px; 
