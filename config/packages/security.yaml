@@ -36,3 +36,7 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+
+        # or require ROLE_ADMIN or IS_AUTHENTICATED_FULLY for /admin*
+        - { path: '^/game', roles: [IS_AUTHENTICATED_FULLY, ROLE_User] }
+        - { path: '^/grids', roles: [IS_AUTHENTICATED_FULLY, ROLE_User] }
