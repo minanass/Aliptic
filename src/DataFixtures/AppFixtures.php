@@ -29,7 +29,7 @@ class AppFixtures extends Fixture
         $user->setPassword($password);
         $user->setEmail('mario@mushroom.com');
         $user->setRoles(['ROLE_User']);
-        $user->setScore(4);
+        $user->setScore(0);
         $user->setLevel(1);
         $manager->persist($user);
 
@@ -39,7 +39,7 @@ class AppFixtures extends Fixture
         $user2->setPassword($password);
         $user2->setEmail('peach@mushroom.com');
         $user2->setRoles(['ROLE_User']);
-        $user2->setScore(8);
+        $user2->setScore(4);
         $user2->setLevel(2);
         $manager->persist($user2);
 
@@ -49,7 +49,7 @@ class AppFixtures extends Fixture
         $user3->setPassword($password);
         $user3->setEmail('luigi@mushroom.com');
         $user3->setRoles(['ROLE_User']);
-        $user3->setScore(12);
+        $user3->setScore(8);
         $user3->setLevel(3);
         $manager->persist($user3);
 
@@ -183,7 +183,6 @@ class AppFixtures extends Fixture
         return $solution;
     }
 
-    //public $level_1_Structure = [[0,0,0,0,3,0,8,0,9],[4,0,2,0,1,0,0,0,5],[9,0,0,8,0,7,0,0,0], [0,4,0,0,0,0,6,3,5],[3,9,0,7,0,0,0,8,2],[2,0,8,0,0,0,9,0,7], [0,0,7,4,0,3,0,5,6],[5,0,4,0,7,0,0,9,0],[6,0,9,0,0,8,0,7,0]];
     public $solution_grid_1_level_1 = [[1,7,5,6,3,4,8,2,9],[4,8,2,5,1,9,7,6,3],[9,6,3,8,2,7,5,1,4], [7,4,1,9,8,2,6,3,5],[3,9,6,7,4,5,1,8,2],[2,5,8,3,6,1,9,4,7], [8,1,7,4,9,3,2,5,6],[5,2,4,1,7,6,3,9,8],[6,3,9,2,5,8,4,7,1]];
     public $structure_grid_1_level_1 = [[".",7,5,6,3,4,8,2,9],[".",8,2,5,1,9,7,6,3],[".",6,3,8,2,7,5,1,4], [7,4,1,9,8,2,6,3,5],[3,9,6,7,4,5,1,8,2],[2,5,8,3,6,1,9,4,7], [8,1,7,4,9,3,2,5,6],[5,2,4,1,7,6,3,9,8],[6,3,9,2,5,8,4,7,1]];
     public $solution_grid_2_level_1 = [[7,4,2,3,8,5,6,1,9],[9,8,6,4,7,1,2,3,5],[1,3,5,6,9,2,7,8,4], [2,5,1,7,4,8,3,9,6],[4,6,3,2,1,9,5,7,8],[8,7,9,5,6,3,1,4,2], [6,1,7,9,2,4,8,5,3],[5,9,8,1,3,6,4,2,7],[3,2,4,8,5,7,9,6,1]];

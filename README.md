@@ -25,14 +25,22 @@ docker build --tag lamp/sudoku_kai_shi .
 Une fois cette commande exécutée, rendez-vous dans votre application docker windows afin de créer un container, dans lequel vous renseignerez les ports ainsi que l'emplacement des fichiers de notre application au niveau des volumes.
 Pour rappel, il faut rentrer dans le premier volume le chemin vers le dossier du projet, et dans le deuxième /var/www/html.
 
-Ensuite, avec la console de commande de Docker, il vous faudra faire un ``` composer install ``` et un ```yarn install``` pour installer les dépendance.
-Il faudra ensuite rentrer la commande suivante:
+Après cela, il vous faudra créer un fichier nommé .env.local dans lequel vous collerez et modifierez les valeurs entre les étoiles: (vous trouverez ces valeurs dans les logs du container docker)
+```bash
+DB_PASSWORD=*password*
+DATABASE_URL=mysql://*username_of_db*:${DB_PASSWORD}@127.0.0.1:3306/*db_name*?serverVersion=mariadb-10.3.25
+```
+
+Ensuite, avec l'aide du terminal du container Docker, il vous faudra faire un ``` composer install ``` suivi d'un ``` npm install ``` et d'un ``` yarn install ``` pour installer l'essemble des dépendances du projet.
+
+Toujour dans le terminal du container rentrer la commande suivante:
 ```bash
 php bin/console doctrine:migrations:migrate
 ```
-Vous aurez ainsi votre base de données.
-Pour finir il vous faudra charger les fixtures:
+
+Votre base de données est créer, il ne vous reste plus qu'à charger les fixtures en executant:
 ```bash
 php bin/console doctrine:fixtures:load
 ```
 
+Pour finir rouler la commande  ``` yarn build ``` afin de changer l'ensemble du style css 
