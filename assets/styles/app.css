@@ -71,6 +71,7 @@ form .grid tr:nth-child(7) td .form-control{
 .grids button{
     margin-top: 2em;
 }
+
 div.col-6 h2{
     padding-bottom: 20px;
     text-align: center;
@@ -86,6 +87,7 @@ div.flex-column{
     margin-bottom: 20px;
     margin-top: 20%;
 }
+
 div.row.py-3, div.col-6{
     text-align: justify;
 }
@@ -107,6 +109,7 @@ div.col-6{
     font-size: 0.9em;
     margin-left:100px;
 }
+
 div.col-6.white {
     box-shadow: none;
     background-color: white;
@@ -169,6 +172,7 @@ table{
 .bg-light{
     background-color:#34A1B9!important;
 }
+
 a, div.footer-copyright, .navbar-light .navbar-brand, ul.navbar-nav li.nav-item a.nav-link , .navbar-light .navbar-nav .nav-link.disabled { 
     color:#ffffff;
 }

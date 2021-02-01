@@ -1,8 +1,18 @@
 <?php
 namespace App\Service;
 
-class GridChecker
+use App\Entity\Grid;
+use Doctrine\ORM\EntityManagerInterface;
+
+class GridService
 {
+	protected $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+		$this->entityManager = $entityManager;
+    }
+
     protected static function structuredData($data) : array
     {
         $formed_data = [];
@@ -28,6 +38,20 @@ class GridChecker
         $solution = self::changeFormat($solution);
 
         return $answer === $solution;
+    }
+
+    public function createGrid($data) : void
+    {
+        // dd($data);
+        $structure =  self::structuredData(str_split($data["structure"]));
+        $solution =  self::structuredData(str_split($data["solution"]));
+        $grid = (new Grid())
+            -> setName($data["name"])
+            -> setLevel($data["level"])
+            -> setInitialStructure($structure)
+            -> setSolution($solution);
+        $this->entityManager->persist($grid);
+        $this->entityManager->flush();
     }
 
 

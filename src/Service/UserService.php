@@ -17,7 +17,6 @@ class UserService {
 		$this->entityManager = $entityManager;
     }
 
-
 	public function increaseLevelAndScore() : void
 	{
 		$user = $this->security->getUser();
@@ -38,7 +37,6 @@ class UserService {
 			$this->entityManager->flush();
 		}
 	}
-
 
 	protected function increaseScore($user) : void
 	{
