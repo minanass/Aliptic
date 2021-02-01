@@ -15,7 +15,7 @@
                 {% for row_grid in grid_of_user_level.initialStructure %}
                     <div class="d-flex align-content-center row_of_grids" style="">
                         {% for cell_of_row in row_grid %}
-                            {% if cell_of_row != 0 %}
+                            {% if cell_of_row != "." %}
                                 <div class="cells_of_grids"> {{ cell_of_row }} </div>
                             {% else %}
                                 <div class="cells_of_grids" ></div>

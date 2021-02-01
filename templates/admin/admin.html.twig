@@ -1,37 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Back Office{% endblock %}
+{% block title %}Back Office
+{% endblock %}
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1 class="mb-4 fs_225">Bonjour Administrateur!</h1>
-    <div class="d-flex justify-content-center mt-5">
-            <form method="POST" name="sudoku_grid_creator"  id="sudoku_grid_creator" action="">
-                <table class='grid'>
-                    {% for row_index, row in grille_vierge %}
-                        <tr class="form-group row" >
+	{% for message in app.flashes('creationGrid') %}
+		<div class="flash-message alert alert-danger">
+			{{ message }}
+		</div>
+	{% endfor %}
 
-                            {% for cell_index, cell_value in row %}
-                                <td>
-                                    <input class="form-control" type="number" id="id_{{ row_index }}-{{ cell_index }}" name="cell_{{ row_index }}-{{ cell_index }}" min="1" max="9" >
-                                </td>
-                            {% endfor %}
-                            
-                        </tr>
-                   
-                    {% endfor %}
-                </table>
-                <div class="d-flex justify-content-between mt-3 row">
-                	<label>Nom:<input class="form-control" type="text" id="id_nom_grille" name="nom_grille" placeholder="Nom de la grille" ></label>
-                	<label>Niveau:<input class="form-control" type="number" id="id_level" name="level" min="1" max="3" ></label>
-                </div>
-                <div class="d-flex justify-content-between mt-3 row">
-                    <input class="btn btn-lg btn-primary mb-3 me-md-3" form="sudoku_grid_creator" type="submit" value="Soumettre">
-                </div>
-            </form>
-        </div>
+	<div class="example-wrapper">
+		<h1 class="mb-4 fs_225">Bonjour Administrateur!</h1>
+		<div class="d-flex justify-content-center mt-5">
+			<form method="POST" name="sudoku_grid_creator" id="sudoku_grid_creator" action="{{ path('new_grid') }}">
+				<input type="hidden" name="token" value="{{ csrf_token('new-grid') }}"/>
+				<div class="d-flex justify-content-between mt-3 row">
+					<label for="name-grid">Nom:</label>
+					<input class="form-control" type="text" id="name-grid" name="name" placeholder="Nom de la grille" required>
+					<label for="level-select">Niveau:</label>
+					<select class="form-control" name="level" id="level-select" required>
+						<option value="">--Ajouter un niveau de complexité--</option>
+						<option value="1">Facile</option>
+						<option value="2">Normal</option>
+						<option value="3">Difficile</option>
+					</select>
+					<input id="structure" name="structure" type="hidden" value="">
+					<input id="solution" name="solution" type="hidden" value="">
+				</div>
+				<div class="d-flex justify-content-between mt-3 row">
+					<input class="btn btn-lg btn-primary mb-3 me-md-3" form="sudoku_grid_creator" type="submit" value="Soumettre">
+				</div>
+			</form>
+		</div>
 
-    
-</div>
+
+	</div>
+
+	{% block javascripts %}
+		{{ parent() }}
+		<script src="{{ asset('js/sudoku.js') }}"></script>
+	{% endblock %}
+
 {% endblock %}

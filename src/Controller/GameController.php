@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Game;
 use App\Repository\GridRepository;
 use App\Repository\GameRepository;
-use App\Service\GridChecker;
+use App\Service\GridService;
 use App\Service\UserService;
 use App\Service\GameService;
 use Symfony\Component\HttpFoundation\Request;
@@ -105,7 +105,7 @@ class GameController extends AbstractController
             $grid_id    = array_pop($data);
             $answer     = $data;
             $solution   = $this->gridRepository->find($grid_id)->getSolution();
-            $result     = GridChecker::checkerAnswer($answer,  $solution );
+            $result     = GridService::checkerAnswer($answer,  $solution );
 
             if($result)
             {

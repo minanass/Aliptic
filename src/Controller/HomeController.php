@@ -40,7 +40,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route(path="/game_rules", name="game_rules")
+     * @Route(path="/rules", name="rules")
      * @return Response
      */
     public function showGameRules(): Response
