@@ -173,7 +173,7 @@ table{
     background-color:#34A1B9!important;
 }
 
-a, div.footer-copyright, .navbar-light .navbar-brand, ul.navbar-nav li.nav-item a.nav-link , .navbar-light .navbar-nav .nav-link.disabled { 
+a, div.footer-copyright, .navbar-light .navbar-brand, ul.navbar-nav li.nav-item a.nav-link{ 
     color:#ffffff;
 }
 .table-bordered .thead-light th, .table-bordered td{
