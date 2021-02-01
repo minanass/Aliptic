@@ -7,10 +7,10 @@
 	<div class="d-flex flex-column mt-5">
 			
 			<div class="row py-3">
-				<div class="col-6 white mr-4">
+				<div id="home-left-section" class="col-6 white mr-4 home-sections">
 					
-						<h1 class="mb-4 fs_225 align-self-center py-3">Sudoku Kai Chi</h1>
-						<h2 class="mb-4 fs_225">Bienvenue!</h2>
+						<h1 class="mb-4 fs_225 align-self-center">Sudoku Kai Chi</h1>
+						<h2 class="mb-4 fs_225">Bienvenue</h2>
 
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id erat facilisis, consequat elit non, eleifend lorem. Fusce imperdiet ante sed sapien hendrerit dictum. Sed sem nulla, semper a lobortis at, facilisis sit amet libero. Praesent tristique mauris augue, id pharetra mi fermentum in. Maecenas ex risus, dignissim at venenatis sit amet, fringilla ac erat. Etiam auctor sollicitudin tellus, ac consequat neque lacinia sed. Integer ex leo, malesuada ut purus vel, gravida condimentum risus.
 			
@@ -32,28 +32,31 @@
 					</div>
 				{% endif %}
 				</div>
-				<div class="col-6">
+				<div id="home-rigth-section" class="col-6 home-sections">
 					{% if app.user %}
-						<h2 class="mb-4 fs_225">Classement</h2>
-						<table class="table table-borderless">
-							<tbody>
-								{% for user in ranking %}
-									<tr>
-										<td>{{ user.username }}</td>
-										<td>{{ user.score }}
-											points</td>
-									</tr>
-								{% endfor %}
-							</tbody>
-						</table>
-					{% else %}
-						<h2>Inscription</h2>
-						{{ form_start(form, {'action': path('app_register'), 'method': 'POST'}) }}
-						{{ form_widget(form) }}
-						<div class="d-flex justify-content-center mt-5">
-							<button type="submit" class="btn btn-primary">Créer un compte</button>
+						<div id="home-ranking">
+							<h2 class="mb-4 fs_225">Classement</h2>
+							<table class="table table-borderless home">
+								<tbody>
+									{% for user in ranking %}
+										<tr>
+											<td>{{ user.username }}</td>
+											<td>{{ user.score }} points</td>
+										</tr>
+									{% endfor %}
+								</tbody>
+							</table>
 						</div>
-						{{ form_end(form) }}
+					{% else %}
+						<div id="home-register">
+							<h2>Inscription</h2>
+							{{ form_start(form, {'action': path('app_register'), 'method': 'POST'}) }}
+							{{ form_widget(form) }}
+							<div class="d-flex justify-content-center mt-3">
+								<button type="submit" class="btn btn-primary">Créer un compte</button>
+							</div>
+							{{ form_end(form) }}
+						</div>
 					{% endif %}
 				</div>
 			</div>

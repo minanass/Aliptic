@@ -11,9 +11,9 @@
 		<table class="table table-bordered">
 			<thead class="thead-light">
 				<tr>
+					<th>Place</th>
 					<th>Nom</th>
 					<th>Score</th>
-					<th>Place</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -21,11 +21,9 @@
 				{% for user in ranking %}
 					{% set place = place + 1 %}
 					<tr>
+						<td>N°{{ place }}</td>
 						<td>{{ user.username }}</td>
-						<td>{{ user.score }}
-							points</td>
-						<td>N°
-							{{ place }}</td>
+						<td>{{ user.score }} points</td>
 					</tr>
 				{% endfor %}
 			</tbody>

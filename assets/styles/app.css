@@ -98,28 +98,71 @@ div.row.py-3{
 div.row.py-3 p{
     font-size: 0.8em;
 }
-div.col-6{
+.home-sections{
     flex: 1.2;
     position: relative;
-    background-color: #34A1B9;
-    box-shadow: 0px 2px 5px #1c1a19;
-    border-radius: 5px;
+    border-radius: 2px;
     padding: 10px;
-    color: white;
     font-size: 0.9em;
     margin-left:100px;
-}
-
-div.col-6.white {
+    margin-top:100px;
+} 
+#home-left-section{
     box-shadow: none;
     background-color: white;
-    margin-left: 50px;
-    color: black;
+    color: #373737;
 }
-div.col-6.white h1.mb-4.fs_225 {
-    color: black;
+#home-left-section h1{
+    color: #373737;
     margin-bottom: 0px!important;
+    font-weight: 700;
 }
+#home-rigth-section {
+    color: white;
+}
+#home-rigth-section #home-register{
+    padding: 1em 2em;
+    background-color: #34A1B9;
+    border-radius: .15rem;
+    box-shadow: 0px 2px 5px rgb(28 26 25 / 10%);
+}
+#home-rigth-section td{
+    color:#fff;
+    text-align: center;
+}
+#home-register h2{
+   /* padding-top: .5em;*/
+}
+#home-register label{
+    display:none !important;
+}
+#home-register input{
+    border-color: #fff !important;
+}
+#home-register .form-check{
+    border: none !important;
+}
+#home-register .form-group{
+    margin-top: 2em;
+} 
+#home-register #registration_form .form-check-label{
+    display: block !important;
+}
+#home-register, #home-ranking{
+    width:80%;
+    margin-left:10%;
+}
+#home-register .form-check-label{
+    margin-left: 1em;
+}
+button.btn-primary{
+    background-color: #373737;
+    border-color:#373737;
+}
+/* div.col-6.white h1.mb-4.fs_225 {
+    color: black;
+    
+} */
 
 a.btn-primary, input.btn.btn-lg.btn-primary, button.btn.btn-lg.btn-primary{
     background-color: #34A1B9;
@@ -128,10 +171,7 @@ a.btn-primary, input.btn.btn-lg.btn-primary, button.btn.btn-lg.btn-primary{
 .justify-content-between a.btn-primary{
     padding: 0.5rem;
 }
-button.btn-primary{
-    background-color: #373737;
-    border-color:#373737;
-}
+
 div.form-check{
     padding-left:30%;
 }
@@ -162,10 +202,9 @@ div.bas-div {
     color:#34A1B9;
     border:2px solid #34A1B9;
 }
-.form-control{
+/* .form-control{
     border: 1px solid #000000;
-    border-radius: .3rem;
-}
+} */
 table{
   border-spacing:  1px;  
 }
@@ -182,3 +221,15 @@ a, div.footer-copyright, .navbar-light .navbar-brand, ul.navbar-nav li.nav-item 
 .navbar-light .navbar-nav .nav-link{
     margin-left:20px;
 }
+.navbar-brand{
+    font-weight: bold;
+}
+.navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
+    color: #fff;
+}
+
+
+
+/*login_page*/
+
+
