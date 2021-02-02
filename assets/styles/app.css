@@ -87,7 +87,7 @@ body {
 
 
 
-/*GRID_FORM*/
+/*GAME_PAGE*/
 input[type="number"]{
     overflow: visible;
     width: 56px;
@@ -141,6 +141,11 @@ form .grid td .form-control {
         height: 43px;
         padding-left: 15px !important;
         -moz-appearance: textfield;
+    }
+}
+@media screen and (min-width: 500px) and (max-width: 1920px) {
+    #game_page{
+        height: calc(100vh - 10em);
     }
 }
 
@@ -248,6 +253,11 @@ form .grid td .form-control {
         padding : 0px 25%;
     }
 }
+@media screen and (min-width: 500px) and (max-width: 1920px) {
+    #login_page{
+        height: calc(100vh - 10em);
+    }
+}
 @media screen and (max-width: 780px) {
     .section-login-form form{
         padding : 0px 0%;
@@ -288,6 +298,11 @@ form .grid td .form-control {
 .grids .row_of_grids:nth-child(4) .cells_of_grids,
 .grids .row_of_grids:nth-child(7) .cells_of_grids{
     border-top: 2px solid  #000;
+}
+@media screen and (min-width: 990px) and (max-width: 1920px) {
+    #grids-container{
+        height: calc(100vh - 10em);
+    }
 }
 @media screen and (max-width: 990px) {
     #grids-container{

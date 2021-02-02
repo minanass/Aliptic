@@ -9,7 +9,7 @@
 		</div>
 	{% endfor %}
 
-	<div class="d-flex justify-content-center mt-5">
+	<div id="game_page" class="d-flex justify-content-center mt-5">
 		<form method="POST" name="sudoku_grid" id="sudoku_grid" action="{{ path('check_answer') }}">
 			<input type="hidden" name="token" value="{{ csrf_token('check-answer') }}"/>
 			<table class='grid'>
