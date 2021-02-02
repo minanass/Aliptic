@@ -4,10 +4,90 @@ body {
    padding: 0;
  }
 
+
+
+
+
+/*FLASH_MESSAGE*/
 .flash-message {
     text-align: center;
 }
-/* style grid_form */
+
+
+
+
+/*NAVBAR*/
+.navbar a{
+    color: white;
+}
+.navbar .nav-item:hover a{
+    font-weight: 500;
+}
+.navbar .navbar-brand{
+    font-weight: 700;
+}
+.navbar .navbar-toggler-icon{
+    color:#fff;
+}
+.content-nav{
+    width: 100%;
+}
+.navbar-toggler {
+    background-color: transparent;
+    border: 2px solid #fff;
+}
+.navbar-toggler-icon {
+    display: inline-block;
+    width: 1.5em;
+    height: .15em;
+    vertical-align: middle;
+    content: "";
+    background: 50% / 70% 50% #fff;
+    border-radius: .25em;
+    margin-top: 0.2em;
+}
+.navbar-toggler-icon:last-child {
+    margin-bottom: 0.2em;
+}
+
+
+
+
+/*FOOTER*/
+.page-footer a, .footer-copyright {
+    color: white;
+}
+@media screen and (min-height: 800px) {
+    footer{
+        position:absolute;
+        bottom:0;
+        width: 100%;
+
+    }
+}
+
+
+
+
+
+/*RANKING_PAGE*/
+#ranking_page .table .thead-light th {
+    background-color: #fff;
+    border-color: #fff;
+}
+#ranking_page td{
+    color: #fff;
+}
+@media screen and (min-width: 768px) and (max-width: 1920px) {
+    #ranking_page{
+        height: calc(100vh - 13em);
+    }
+}
+
+
+
+
+/*GAME_PAGE*/
 input[type="number"]{
     overflow: visible;
     width: 56px;
@@ -27,16 +107,167 @@ input[type="number"]:read-only{
 table .form-group {
     margin-bottom: 0px;
 }
-form .grid td:nth-child(4) .form-control,
-form .grid td:nth-child(7) .form-control{
-    border-left: 4px solid #ced4da;
+form .grid tr:first-child td:first-child{
+    border-top-left-radius: .3em;
 }
-form .grid tr:nth-child(4) td .form-control,
-form .grid tr:nth-child(7) td .form-control{
-    border-top: 4px solid #ced4da;
+form .grid tr:first-child td:last-child{
+    border-top-right-radius: .3em;
+}
+form .grid tbody tr:last-child td:first-child{
+    border-bottom-left-radius: .3em;
+}
+form .grid tbody tr:last-child td:last-child{
+    border-bottom-right-radius: .3em;
+}
+form .grid td:nth-child(4) ,
+form .grid td:nth-child(7) {
+    border-left: 4px solid #495057;
+}
+form .grid tr:nth-child(4) td ,
+form .grid tr:nth-child(7) td {
+    border-top: 4px solid #495057;
+}
+form .grid td{
+    border: 2px solid #495057;
+    padding: 0px;
+}
+form .grid td .form-control {
+    border: 0px solid #495057;
+}
+@media screen and (max-width: 780px) {
+    input[type="number"]{
+        overflow: visible;
+        width: 42px;
+        height: 43px;
+        padding-left: 15px !important;
+        -moz-appearance: textfield;
+    }
+}
+@media screen and (min-width: 500px) and (max-width: 1920px) {
+    #game_page{
+        height: calc(100vh - 10em);
+    }
 }
 
-/* style grids_show */
+
+
+
+/*PAGES*/
+.section-content{
+    background-color: rgb(52, 161, 185) ;
+    color:white;
+    border-radius: .25em;
+}
+.section-content .bas-div {
+    height: 75px;
+    position: relative ;
+}
+.section-content .bas-div p{
+    position: absolute;
+    bottom:-28px;
+    right: 10px;
+    padding-top: 2em;
+    font-size: 2em;
+    font-weight: 700;
+}
+
+
+
+
+/*HOME_PAGE*/
+#home-left-section{
+    color : #373733;
+}
+#home-left-section h1{
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.container-home-rigth-section{
+    padding: 0% 20%;
+}
+#home-rigth-section h2{
+    color:white !important;
+}
+#home-ranking, #home-register{
+    padding: 1em 1em;
+    background-color: rgb(52, 161, 185) ;
+    border-radius: .2rem;
+}
+#home-register .form-group{
+    width: 80%;
+    margin-left: 10%;
+}
+#home-register .form-group label{
+    display: none !important;
+    color:white !important;
+}
+#home-register #registration_form .form-group{
+    margin-top: 2em;
+}
+#home-register #registration_form .form-check-label{
+    display: block !important;
+}
+#home-ranking tr td:last-child{
+    border-left: 1px solid rgba(255, 255, 255, 25%);
+}
+#home-ranking tr td{
+    width:50%;
+    color:white;
+}
+@media screen and (min-width: 991px) and (max-width: 1920px) {
+    #home{
+        height: calc(100vh - 10em);
+    }
+}
+@media screen and (max-width: 1000px) {
+    .btn-lg{
+        font-size: 1rem;
+    }
+}
+
+
+
+
+/*LOGIN_PAGE*/
+.section-login-form form{
+    padding : 0px 30%;
+}
+.section-login-form form label{
+    display:none;
+}
+.section-login-form form input, .section-login-form form button{
+    margin-top:3em;
+    width: 80%;
+    margin-left: 10%;
+}
+.section-login-form form h1{
+    color:rgb(52, 161, 185);
+    font-weight: 700;
+}
+.section-login-form form .content-input{
+    border:3px solid rgba(52, 161, 185, 55%);
+    border-radius: .3em;
+}
+@media screen and (min-width: 781px) and (max-width: 990px) {
+    .section-login-form form{
+        padding : 0px 25%;
+    }
+}
+@media screen and (min-width: 500px) and (max-width: 1920px) {
+    #login_page{
+        height: calc(100vh - 10em);
+    }
+}
+@media screen and (max-width: 780px) {
+    .section-login-form form{
+        padding : 0px 0%;
+    }
+}
+
+
+
+
+/*GRIDS_PAGES*/
 .grids .row_of_grids:nth-child(1) .cells_of_grids:nth-child(1){
     border-top-left-radius: .25rem;
 }
@@ -68,117 +299,42 @@ form .grid tr:nth-child(7) td .form-control{
 .grids .row_of_grids:nth-child(7) .cells_of_grids{
     border-top: 2px solid  #000;
 }
-.grids button{
-    margin-top: 2em;
+@media screen and (min-width: 990px) and (max-width: 1920px) {
+    #grids-container{
+        height: calc(100vh - 10em);
+    }
+}
+@media screen and (max-width: 990px) {
+    #grids-container{
+        flex-direction: column;
+    }
 }
 
-div.col-6 h2{
-    padding-bottom: 20px;
-    text-align: center;
-    margin:auto;
-}
-div.col-6.white h2{
-    padding-bottom: 0px;
-    padding-top: 0px;
-    text-align: left;
-}
-div.flex-column{
-    display: flex;
-    margin-bottom: 20px;
-    margin-top: 20%;
+
+
+/*MENTIONS_PAGE*/
+@media screen and (min-width: 0px) and (max-width: 1920px) {
+    footer{
+       position: relative;
+    }
 }
 
-div.row.py-3, div.col-6{
-    text-align: justify;
-}
-div.row.py-3{
-    margin-right: 60px;
-    flex: 3;
-}
-div.row.py-3 p{
-    font-size: 0.8em;
-}
-div.col-6{
-    flex: 1.2;
-    position: relative;
-    background-color: #34A1B9;
-    box-shadow: 0px 2px 5px #1c1a19;
-    border-radius: 5px;
-    padding: 10px;
-    color: white;
-    font-size: 0.9em;
-    margin-left:100px;
+
+
+
+/*DESCRIPTION_PAGE*/
+@media screen and (min-width: 991px) and (max-width: 1920px) {
+    #description_page{
+        height: calc(100vh - 13em);
+    }
 }
 
-div.col-6.white {
-    box-shadow: none;
-    background-color: white;
-    margin-left: 50px;
-    color: black;
-}
-div.col-6.white h1.mb-4.fs_225 {
-    color: black;
-    margin-bottom: 0px!important;
-}
 
-a.btn-primary, input.btn.btn-lg.btn-primary, button.btn.btn-lg.btn-primary{
-    background-color: #34A1B9;
-    border-color:#34A1B9;
-}
-.justify-content-between a.btn-primary{
-    padding: 0.5rem;
-}
-button.btn-primary{
-    background-color: #373737;
-    border-color:#373737;
-}
-div.form-check{
-    padding-left:30%;
-}
-button{
-    margin:10px;
-}
-.justify-content-between .btn{
-    margin-right: 15px;
-}
-.justify-content-between .btn:last-child{
-    margin-right:0;
-}
-div.container.pt-5{
-    margin-top: 30px; 
-    background-color: #c9e9f0;
-}
-h1.mb-4.fs_225{
-    color:#34A1B9;
-    margin-bottom: 30px!important;
-}
-div.bas-div {
-    text-align: right;
-    color: #ffffff;
-    font-size: 40px;
-    font-weight: bold;
-}
-.btn-outline-secondary{
-    color:#34A1B9;
-    border:2px solid #34A1B9;
-}
-.form-control{
-    border: 1px solid #000000;
-    border-radius: .3rem;
-}
-table{
-  border-spacing:  1px;  
-}
-.bg-light{
-    background-color:#34A1B9!important;
-}
 
-a, div.footer-copyright, .navbar-light .navbar-brand, ul.navbar-nav li.nav-item a.nav-link{ 
-    color:#ffffff;
-}
-.table-bordered .thead-light th, .table-bordered td{
-    border:2px solid #ffffff;   
-}
-.navbar-light .navbar-nav .nav-link{
-    margin-left:20px;
+
+/*RULES_PAGE*/
+@media screen and (min-width: 767px) and (max-width: 1920px) {
+    #rules_page{
+        height: calc(100vh - 13em);
+    }
 }

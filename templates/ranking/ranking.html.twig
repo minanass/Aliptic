@@ -5,35 +5,34 @@
 
 {% block body %}
 
-	<div class="container pt-5">
-		<h1 class="mb-4 fs_225">Classement</h1>
+	<div id="ranking_page" class="container mt-5 pt-5 mb-5">
+		<div class="section-content pt-5 pl-5 pr-5">
+			<h1 class="mb-4 fs_225">Classement</h1>
 
-		<table class="table table-bordered">
-			<thead class="thead-light">
-				<tr>
-					<th>Nom</th>
-					<th>Score</th>
-					<th>Place</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% set place = 0 %}
-				{% for user in ranking %}
-					{% set place = place + 1 %}
+			<table class="table table-bordered">
+				<thead class="thead-light">
 					<tr>
-						<td>{{ user.username }}</td>
-						<td>{{ user.score }}
-							points</td>
-						<td>N°
-							{{ place }}</td>
+						<th class="text-center">Place</th>
+						<th class="text-center">Nom</th>
+						<th class="text-center">Score</th>
 					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-		<div class="bas-div">
-			<p>
-				Sudoku Kai Chi</p>
+				</thead>
+				<tbody>
+					{% set place = 0 %}
+					{% for user in ranking %}
+						{% set place = place + 1 %}
+						<tr>
+							<td class="text-center">N°{{ place }}</td>
+							<td class="text-center font-weight-bold">{{ user.username }}</td>
+							<td class="text-center">{{ user.score }} points</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<div class="bas-div">
+				<p>
+					Sudoku Kai Chi</p>
+			</div>
 		</div>
-
 	</div>
 {% endblock %}

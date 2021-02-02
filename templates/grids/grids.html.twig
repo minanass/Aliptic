@@ -8,12 +8,12 @@
         </div>
     {% endfor %}
 
-    <div class="d-flex justify-content-around mt-5">
+    <div id="grids-container" class="d-flex justify-content-around mt-5 pt-5">
         {% for grid_of_user_level in grids %}
             <div class="grids">
 
                 {% for row_grid in grid_of_user_level.initialStructure %}
-                    <div class="d-flex align-content-center row_of_grids" style="">
+                    <div class="d-flex justify-content-center align-content-center row_of_grids" style="">
                         {% for cell_of_row in row_grid %}
                             {% if cell_of_row != "." %}
                                 <div class="cells_of_grids"> {{ cell_of_row }} </div>
@@ -24,7 +24,7 @@
                     </div>
                 {% endfor %}
 
-                <div class="d-flex justify-content-center mt-3">
+                <div class="d-flex justify-content-center mt-3 mb-3">
                     <a href="{{ path('game', { 'grid_id': grid_of_user_level.id}) }}" class="btn btn-primary">Sélectionner</a>
                 </div>
                     

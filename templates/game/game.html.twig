@@ -9,7 +9,7 @@
 		</div>
 	{% endfor %}
 
-	<div class="d-flex justify-content-center mt-5">
+	<div id="game_page" class="d-flex justify-content-center mt-5">
 		<form method="POST" name="sudoku_grid" id="sudoku_grid" action="{{ path('check_answer') }}">
 			<input type="hidden" name="token" value="{{ csrf_token('check-answer') }}"/>
 			<table class='grid'>
@@ -29,9 +29,10 @@
 					</tr>
 
 				{% endfor %}
-				<input id="gridId" name="gridId" type="hidden" value="{{ grid.id }}">
+				
 			</table>
-			<div class="d-flex justify-content-between mt-3 row">
+			<input id="gridId" name="gridId" type="hidden" value="{{ grid.id }}">
+			<div class="d-flex justify-content-between mt-5 row">
 				<input class="btn btn-lg btn-primary mb-3 me-md-3" form="sudoku_grid" type="submit" value="Valider">
 				<a href="{{ path('grids') }}" class="btn btn-lg btn-outline-secondary mb-3">Changer de Grille</a>
 			</div>
