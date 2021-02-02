@@ -4,10 +4,18 @@ body {
    padding: 0;
  }
 
+
+
+
+
 /*FLASH_MESSAGE*/
 .flash-message {
     text-align: center;
 }
+
+
+
+
 /*NAVBAR*/
 .navbar a{
     color: white;
@@ -41,6 +49,10 @@ body {
 .navbar-toggler-icon:last-child {
     margin-bottom: 0.2em;
 }
+
+
+
+
 /*FOOTER*/
 .page-footer a, .footer-copyright {
     color: white;
@@ -54,6 +66,10 @@ body {
     }
 }
 
+
+
+
+
 /*RANKING_PAGE*/
 #ranking_page .table .thead-light th {
     background-color: #fff;
@@ -62,23 +78,22 @@ body {
 #ranking_page td{
     color: #fff;
 }
-/*GRID_FORM*/
+@media screen and (min-width: 768px) and (max-width: 1920px) {
+    #ranking_page{
+        height: calc(100vh - 13em);
+    }
+}
 
+
+
+
+/*GRID_FORM*/
 input[type="number"]{
     overflow: visible;
     width: 56px;
     height: 58px;
     padding-left: 22px !important;
     -moz-appearance: textfield;
-}
-@media screen and (max-width: 780px) {
-    input[type="number"]{
-        overflow: visible;
-        width: 42px;
-        height: 43px;
-        padding-left: 15px !important;
-        -moz-appearance: textfield;
-    }
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -119,6 +134,19 @@ form .grid td{
 form .grid td .form-control {
     border: 0px solid #495057;
 }
+@media screen and (max-width: 780px) {
+    input[type="number"]{
+        overflow: visible;
+        width: 42px;
+        height: 43px;
+        padding-left: 15px !important;
+        -moz-appearance: textfield;
+    }
+}
+
+
+
+
 /*PAGES*/
 .section-content{
     background-color: rgb(52, 161, 185) ;
@@ -137,6 +165,9 @@ form .grid td .form-control {
     font-size: 2em;
     font-weight: 700;
 }
+
+
+
 
 /*HOME_PAGE*/
 #home-left-section{
@@ -178,12 +209,23 @@ form .grid td .form-control {
     width:50%;
     color:white;
 }
-/*LOGIN_PAGE*/
-.section-login-form{
-    
+@media screen and (min-width: 991px) and (max-width: 1920px) {
+    #home{
+        height: calc(100vh - 10em);
+    }
 }
+@media screen and (max-width: 1000px) {
+    .btn-lg{
+        font-size: 1rem;
+    }
+}
+
+
+
+
+/*LOGIN_PAGE*/
 .section-login-form form{
-    padding : 0px 25%;
+    padding : 0px 30%;
 }
 .section-login-form form label{
     display:none;
@@ -201,8 +243,21 @@ form .grid td .form-control {
     border:3px solid rgba(52, 161, 185, 55%);
     border-radius: .3em;
 }
+@media screen and (min-width: 781px) and (max-width: 990px) {
+    .section-login-form form{
+        padding : 0px 25%;
+    }
+}
+@media screen and (max-width: 780px) {
+    .section-login-form form{
+        padding : 0px 0%;
+    }
+}
 
-/* style grids_show */
+
+
+
+/*GRIDS_PAGES*/
 .grids .row_of_grids:nth-child(1) .cells_of_grids:nth-child(1){
     border-top-left-radius: .25rem;
 }
@@ -234,6 +289,37 @@ form .grid td .form-control {
 .grids .row_of_grids:nth-child(7) .cells_of_grids{
     border-top: 2px solid  #000;
 }
-.grids button{
-    margin-top: 2em;
+@media screen and (max-width: 990px) {
+    #grids-container{
+        flex-direction: column;
+    }
+}
+
+
+
+/*MENTIONS_PAGE*/
+@media screen and (min-width: 0px) and (max-width: 1920px) {
+    footer{
+       position: relative;
+    }
+}
+
+
+
+
+/*DESCRIPTION_PAGE*/
+@media screen and (min-width: 991px) and (max-width: 1920px) {
+    #description_page{
+        height: calc(100vh - 13em);
+    }
+}
+
+
+
+
+/*RULES_PAGE*/
+@media screen and (min-width: 767px) and (max-width: 1920px) {
+    #rules_page{
+        height: calc(100vh - 13em);
+    }
 }
