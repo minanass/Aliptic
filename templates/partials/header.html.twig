@@ -1,32 +1,27 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-ligth bg-primary">
 	<a class="navbar-brand" href="{{ path('home')}}">Sudoku Kai Chi</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		<div class=" d-flex flex-column" >
+			<span class="navbar-toggler-icon"></span>
+			<span class="navbar-toggler-icon"></span>
+			<span class="navbar-toggler-icon"></span>
+		</div>
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="d-flex flex-row justify-content-start align-items-center navbar-nav w-100">
-			<li class="nav-item">
-				<a class="nav-link" href="{{ path('home')}}">Accueil
-				</a>
-			</li>
-			<li class="nav-item">
+		<div class=" content-nav d-flex justify-content-between">
+			<div class="navbar-nav">
+				<a class="nav-link active" href="{{ path('home')}}">Accueil <span class="sr-only">(current)</span></a>
 				<a class="nav-link" href="{{ path('rules')}}">Règles du jeu</a>
-			</li>
-			<li class="nav-item">
 				<a class="nav-link" href="{{ path('group_description')}}">Description du groupe</a>
-			</li>
-			<li class="nav-item">
 				<a class="nav-link" href="{{ path('ranking')}}">Classement</a>
-			</li>
-			{% if app.user %}
-				<li class="nav-item ml-auto">
-					<a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
-				</li>
-			{% else %}
-				<li class="nav-item ml-auto">
+			</div>
+			<div>
+				{% if app.user %}
+					<a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>	
+				{% else %}
 					<a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
-				</li>
-			{% endif %}
-		</ul>
+				{% endif %}
+			</div>
+		</div>
 	</div>
 </nav>
