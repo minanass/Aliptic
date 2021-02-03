@@ -27,7 +27,7 @@ class AppFixtures extends Fixture
         $user->setUsername('Mario');
         $password = $this->encoder->encodePassword($user, '123456');
         $user->setPassword($password);
-        $user->setEmail('mario@mushroom.com');
+        $user->setEmail('mario@test.fr');
         $user->setRoles(['ROLE_User']);
         $user->setScore(0);
         $user->setLevel(1);
@@ -37,7 +37,7 @@ class AppFixtures extends Fixture
         $user2->setUsername('Peach');
         $password = $this->encoder->encodePassword($user2, '123456');
         $user2->setPassword($password);
-        $user2->setEmail('peach@mushroom.com');
+        $user2->setEmail('peach@test.fr');
         $user2->setRoles(['ROLE_User']);
         $user2->setScore(4);
         $user2->setLevel(2);
@@ -47,7 +47,7 @@ class AppFixtures extends Fixture
         $user3->setUsername('Luigi');
         $password = $this->encoder->encodePassword($user3, '123456');
         $user3->setPassword($password);
-        $user3->setEmail('luigi@mushroom.com');
+        $user3->setEmail('luigi@test.fr');
         $user3->setRoles(['ROLE_User']);
         $user3->setScore(8);
         $user3->setLevel(3);
@@ -57,7 +57,7 @@ class AppFixtures extends Fixture
         $admin->setUsername('Admin');
         $password = $this->encoder->encodePassword($admin, '123456');
         $admin->setPassword($password);
-        $admin->setEmail('admin@mushroom.com');
+        $admin->setEmail('admin@test.fr');
         $admin->setRoles(['ROLE_Admin']);
         $admin->setScore(0);
         $admin->setLevel(1);
@@ -168,19 +168,6 @@ class AppFixtures extends Fixture
         $manager->persist($ranking);
 
         $manager->flush();
-    }
-
-    public function creationSolution(){
-        $solution =[];
-        for($indexRow = 0;$indexRow <= 8; $indexRow++){
-            $row=[];
-            for($value = 1; $value <= 9; $value++){
-                $indexInRow = $value - 1;
-                $row[$indexInRow] = $value;
-            }
-            array_push ( $solution , $row );
-        }
-        return $solution;
     }
 
     public $solution_grid_1_level_1 = [[6,7,8,5,9,3,1,4,2],[2,5,3,7,4,1,6,9,8],[1,9,4,6,8,2,7,5,3], [7,4,9,3,2,6,5,8,1],[5,2,6,8,1,7,9,3,4],[8,3,1,9,5,4,2,7,6], [4,8,5,2,6,9,3,1,7],[9,6,7,1,3,8,4,2,5],[3,1,2,4,7,5,8,6,9]];
