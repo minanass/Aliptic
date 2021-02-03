@@ -35,12 +35,12 @@ Ensuite, avec l'aide du terminal du container Docker, il vous faudra faire un ``
 
 Toujour dans le terminal du container rentrer la commande suivante:
 ```bash
-php bin/console doctrine:schema:update --force
+php bin/console doctrine:migrations:migrate
 ```
 
 Votre base de données est créer, il ne vous reste plus qu'à charger les fixtures en executant:
 ```bash
-php bin/console doctrine:fixture:load
+php bin/console doctrine:fixtures:load
 ```
 
 Pour finir rouler la commande  ``` yarn build ``` afin de changer l'ensemble du style css 

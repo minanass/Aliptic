@@ -13,9 +13,7 @@
 				<a class="nav-link active" href="{{ path('home')}}">Accueil <span class="sr-only">(current)</span></a>
 				<a class="nav-link" href="{{ path('rules')}}">Règles du jeu</a>
 				<a class="nav-link" href="{{ path('group_description')}}">Description du groupe</a>
-				{% if app.user %}
-					<a class="nav-link" href="{{ path('ranking')}}">Classement</a>
-				{% endif %}
+				<a class="nav-link" href="{{ path('ranking')}}">Classement</a>
 			</div>
 			<div>
 				{% if app.user %}
